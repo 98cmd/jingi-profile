@@ -197,9 +197,9 @@ export default function Home() {
                         <><div /><div className="text-left"><div className="bg-[#141414] border border-white/[0.06] rounded-xl p-7 hover:border-[var(--color-gold)]/20 transition-colors"><p className="text-[var(--color-gold)] text-[13px] italic mb-2" style={{ fontFamily: "var(--font-heading)" }}>{item.year}</p><h3 className="text-[16px] font-bold text-white mb-2">{item.title}</h3><p className="text-[13px] text-white/40 leading-relaxed">{item.desc}</p></div></div></>
                       )}
                     </div>
-                    <div className="sm:hidden">
-                      <div className="bg-[#1a1a1a] border border-white/[0.08] rounded-xl p-5 pl-7 relative overflow-hidden text-left">
-                        <div className="absolute left-0 top-0 bottom-0 w-[4px] rounded-l-xl bg-[var(--color-gold)]" />
+                    <div className="sm:hidden flex gap-4 text-left">
+                      <div className="w-[4px] shrink-0 rounded-full bg-[var(--color-gold)]" />
+                      <div className="bg-[#1a1a1a] border border-white/[0.08] rounded-xl p-5 flex-1">
                         <p className="text-[var(--color-gold)] text-[12px] font-semibold tracking-[0.08em] mb-2">{item.year}</p>
                         <h3 className="text-[15px] font-bold text-white mb-1.5">{item.title}</h3>
                         <p className="text-[13px] text-white/40 leading-relaxed">{item.desc}</p>
