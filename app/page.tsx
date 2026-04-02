@@ -14,7 +14,6 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/10" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent hidden sm:block" />
 
-          {/* ヒーローにも左右padding確保（containerで囲む） */}
           <div className="relative z-10 w-full pb-12 sm:pb-16 pt-32">
             <div className="container" style={{ textAlign: "left" }}>
               <div className="mb-6">
@@ -22,12 +21,8 @@ export default function Home() {
                 <h1 className="text-white text-[40px] sm:text-[56px] md:text-[72px] font-bold leading-[1.1] mb-3" style={{ fontFamily: "var(--font-heading)" }}>
                   上田 陣義
                 </h1>
-                <p className="text-white/50 text-[16px] sm:text-[18px] tracking-wider mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                  Jingi Ueda
-                </p>
-                <p className="text-[var(--color-gold)] text-[13px] sm:text-[15px] font-medium tracking-wide">
-                  パーソナルトレーナー / フィジーク競技者 / 実業家
-                </p>
+                <p className="text-white/50 text-[16px] sm:text-[18px] tracking-wider mb-2" style={{ fontFamily: "var(--font-heading)" }}>Jingi Ueda</p>
+                <p className="text-[var(--color-gold)] text-[13px] sm:text-[15px] font-medium tracking-wide">パーソナルトレーナー / フィジーク競技者 / 実業家</p>
               </div>
 
               <p className="text-white/40 text-[13px] sm:text-[14px] leading-relaxed max-w-xl mb-8">
@@ -42,12 +37,12 @@ export default function Home() {
 
               <div className="flex flex-wrap items-end gap-8 sm:gap-12 mb-10">
                 {[
-                  { val: "No.1", unit: "", label: "全店トップ" },
-                  { val: "8", unit: "年", label: "業界キャリア" },
-                  { val: "4", unit: "事業", label: "展開中" },
+                  { val: "No.1", unit: "", label: "全店トップ", gold: true },
+                  { val: "8", unit: "年", label: "業界キャリア", gold: false },
+                  { val: "4", unit: "事業", label: "展開中", gold: false },
                 ].map((s, i) => (
                   <div key={i}>
-                    <div className={`stat-num ${i === 0 ? "text-[var(--color-gold)]" : "text-white"}`}>
+                    <div className={`stat-num ${s.gold ? "text-[var(--color-gold)]" : "text-white"}`}>
                       {s.val}{s.unit && <span className="text-[0.4em] text-white/30 ml-1">{s.unit}</span>}
                     </div>
                     <p className="text-white/30 text-[10px] tracking-[0.15em] uppercase mt-1">{s.label}</p>
@@ -79,6 +74,7 @@ export default function Home() {
               </h2>
             </div>
 
+            {/* flex-row-equal: テキスト+写真の2カラム */}
             <div className="flex-row-equal mb-20" style={{ alignItems: "flex-start" }}>
               <div className="fade-up" style={{ textAlign: "left" }}>
                 <p className="body-text mb-8">
@@ -89,8 +85,8 @@ export default function Home() {
                 </p>
               </div>
               <div className="fade-up">
-                <div className="relative aspect-[4/5] rounded-lg overflow-hidden shadow-2xl">
-                  <Image src="/images/competition.jpg" alt="上田陣義" fill className="object-cover object-top" sizes="(max-width:1024px) 100vw, 50vw" />
+                <div className="relative aspect-[4/5] rounded-lg overflow-hidden shadow-2xl" style={{ minHeight: "300px" }}>
+                  <Image src="/images/competition.jpg" alt="上田陣義" fill className="object-cover object-top" sizes="(max-width:767px) 100vw, 50vw" />
                 </div>
               </div>
             </div>
@@ -114,7 +110,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ══════════ BUSINESS (4枠) ══════════ */}
+        {/* ══════════ BUSINESS (4枠: grid 2x2) ══════════ */}
         <section id="business" className="section-dark">
           <div className="container">
             <div className="fade-up">
@@ -122,51 +118,40 @@ export default function Home() {
               <h2 className="heading-section text-white">事業領域</h2>
             </div>
 
-            <div className="flex-row-equal flex-wrap">
-              {/* 上2つ: サービスページへリンクあり */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
-                { title: "APEX PERSONAL GYM", sub: "パーソナルジム", desc: "完全個室・全国No.1トレーナーが導くオーダーメイドボディメイク。ダイエット、筋肥大、姿勢改善、大会サポートまで。", img: "/images/gym.jpg", tags: ["完全個室", "恵比寿", "手ぶらOK"], href: "#" },
-                { title: "ORDER SUIT", sub: "オーダースーツ", desc: "トレーナー視点の採寸×生地選定×スタイリング提案。鍛え上げた身体が最も美しく見えるスーツを設計。", img: "/images/suit.jpg", tags: ["生地選定", "スタイリング", "採寸"], href: "#" },
-              ].map((b, i) => (
-                <a key={i} href={b.href} className="biz-card group relative h-[320px] sm:h-[380px] p-8 sm:p-10 flex flex-col justify-end fade-up" style={{ textAlign: "left", minWidth: 0 }}>
-                  <Image src={b.img} alt={b.title} fill className="object-cover opacity-25 group-hover:opacity-35 transition-opacity duration-500 rounded-xl" sizes="(max-width:768px) 100vw, 50vw" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent rounded-xl" />
-                  <div className="relative z-10">
-                    <p className="text-[var(--color-gold)] text-[10px] tracking-[0.2em] uppercase mb-2">{b.sub}</p>
-                    <h3 className="text-white text-[22px] sm:text-[26px] font-semibold mb-2 group-hover:text-[var(--color-gold-light)] transition-colors" style={{ fontFamily: "var(--font-heading)" }}>{b.title}</h3>
-                    <p className="text-white/40 text-[13px] leading-relaxed mb-4">{b.desc}</p>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {b.tags.map((t) => <span key={t} className="text-[10px] text-white/40 border border-white/10 rounded-full px-3 py-1">{t}</span>)}
+                { title: "APEX PERSONAL GYM", sub: "パーソナルジム", desc: "完全個室・全国No.1トレーナーが導くオーダーメイドボディメイク。ダイエット、筋肥大、姿勢改善、大会サポートまで。", img: "/images/gym.jpg", tags: ["完全個室", "恵比寿", "手ぶらOK"], href: "#", link: true },
+                { title: "ORDER SUIT", sub: "オーダースーツ", desc: "トレーナー視点の採寸×生地選定×スタイリング提案。鍛え上げた身体が最も美しく見えるスーツを設計。", img: "/images/suit.jpg", tags: ["生地選定", "スタイリング", "採寸"], href: "#", link: true },
+                { title: "WELLNESS COMMUNITY", sub: "ウェルネスコミュニティ", desc: "皇居ランなどの運動イベント企画・ウェルネス交流会運営。健康を軸にした繋がりの場を創る。", img: "/images/community.jpg", tags: ["皇居ラン", "交流イベント", "運動習慣"], href: "#", link: false },
+                { title: "CHALLENGER'S HUB", sub: "挑戦者コミュニティ", desc: "愛媛をはじめ地方から上京する挑戦者を支援。自身の経験を活かし、住居・仕事・人脈づくりをサポート。", img: "/images/hero.jpg", tags: ["上京支援", "愛媛出身", "人脈づくり"], href: "#", link: false },
+              ].map((b, i) => {
+                const inner = (
+                  <>
+                    <Image src={b.img} alt={b.title} fill className={`object-cover ${b.link ? "opacity-25 group-hover:opacity-35" : "opacity-20"} transition-opacity duration-500 rounded-xl`} sizes="(max-width:768px) 100vw, 50vw" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent rounded-xl" />
+                    <div className="relative z-10" style={{ textAlign: "left" }}>
+                      <p className="text-[var(--color-gold)] text-[10px] tracking-[0.2em] uppercase mb-2">{b.sub}</p>
+                      <h3 className={`text-white text-[22px] sm:text-[26px] font-semibold mb-2 ${b.link ? "group-hover:text-[var(--color-gold-light)]" : ""} transition-colors`} style={{ fontFamily: "var(--font-heading)" }}>{b.title}</h3>
+                      <p className="text-white/40 text-[13px] leading-relaxed mb-4">{b.desc}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {b.tags.map((t) => <span key={t} className="text-[10px] text-white/40 border border-white/10 rounded-full px-3 py-1">{t}</span>)}
+                      </div>
+                      {b.link && (
+                        <span className="inline-flex items-center gap-2 text-[var(--color-gold)] text-[11px] tracking-[0.15em] uppercase mt-4">
+                          View Details
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="transition-transform duration-300 group-hover:translate-x-1"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" /></svg>
+                        </span>
+                      )}
                     </div>
-                    <span className="inline-flex items-center gap-2 text-[var(--color-gold)] text-[11px] tracking-[0.15em] uppercase">
-                      View Details
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="transition-transform duration-300 group-hover:translate-x-1"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" /></svg>
-                    </span>
-                  </div>
-                </a>
-              ))}
-            </div>
-
-            <div className="flex-row-equal flex-wrap mt-6">
-              {/* 下2つ: LPなし */}
-              {[
-                { title: "WELLNESS COMMUNITY", sub: "ウェルネスコミュニティ", desc: "皇居ランなどの運動イベント企画・ウェルネス交流会運営。健康を軸にした繋がりの場を創る。", img: "/images/community.jpg", tags: ["皇居ラン", "交流イベント", "運動習慣"] },
-                { title: "CHALLENGER'S HUB", sub: "挑戦者コミュニティ", desc: "愛媛をはじめ地方から上京する挑戦者を支援。自身の経験を活かし、住居・仕事・人脈づくりをサポート。", img: "/images/hero.jpg", tags: ["上京支援", "愛媛出身", "人脈づくり"] },
-              ].map((b, i) => (
-                <div key={i} className="biz-card relative h-[320px] sm:h-[380px] p-8 sm:p-10 flex flex-col justify-end fade-up" style={{ textAlign: "left", minWidth: 0 }}>
-                  <Image src={b.img} alt={b.title} fill className="object-cover opacity-20 rounded-xl" sizes="(max-width:768px) 100vw, 50vw" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent rounded-xl" />
-                  <div className="relative z-10">
-                    <p className="text-[var(--color-gold)] text-[10px] tracking-[0.2em] uppercase mb-2">{b.sub}</p>
-                    <h3 className="text-white text-[22px] sm:text-[26px] font-semibold mb-2" style={{ fontFamily: "var(--font-heading)" }}>{b.title}</h3>
-                    <p className="text-white/40 text-[13px] leading-relaxed mb-4">{b.desc}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {b.tags.map((t) => <span key={t} className="text-[10px] text-white/40 border border-white/10 rounded-full px-3 py-1">{t}</span>)}
-                    </div>
-                  </div>
-                  <div className="absolute top-5 right-5 z-10 text-[10px] text-white/20 border border-white/10 rounded-full px-3 py-1">Coming Soon</div>
-                </div>
-              ))}
+                    {!b.link && <div className="absolute top-5 right-5 z-10 text-[10px] text-white/20 border border-white/10 rounded-full px-3 py-1">Coming Soon</div>}
+                  </>
+                );
+                return b.link ? (
+                  <a key={i} href={b.href} className="biz-card group relative h-[320px] sm:h-[380px] p-8 sm:p-10 flex flex-col justify-end fade-up">{inner}</a>
+                ) : (
+                  <div key={i} className="biz-card relative h-[320px] sm:h-[380px] p-8 sm:p-10 flex flex-col justify-end fade-up">{inner}</div>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -194,38 +179,18 @@ export default function Home() {
                 return (
                   <div key={i} className="relative mb-10 last:mb-0 fade-up">
                     <div className="absolute hidden sm:block sm:left-1/2 sm:-translate-x-1/2 top-5 w-[12px] h-[12px] rounded-full bg-[var(--color-gold)] border-[2px] border-[#0a0a0a] shadow-[0_0_0_2px_var(--color-gold)] z-10" />
-
                     <div className="hidden sm:grid sm:grid-cols-2 sm:gap-16">
                       {isLeft ? (
-                        <>
-                          <div className="text-left">
-                            <div className="bg-[#141414] border border-white/[0.06] rounded-xl p-7 hover:border-[var(--color-gold)]/20 transition-colors w-full">
-                              <p className="text-[var(--color-gold)] text-[13px] italic mb-2" style={{ fontFamily: "var(--font-heading)" }}>{item.year}</p>
-                              <h3 className="text-[16px] font-bold text-white mb-2 tracking-tight">{item.title}</h3>
-                              <p className="text-[13px] text-white/40 leading-relaxed">{item.desc}</p>
-                            </div>
-                          </div>
-                          <div />
-                        </>
+                        <><div className="text-left"><div className="bg-[#141414] border border-white/[0.06] rounded-xl p-7 hover:border-[var(--color-gold)]/20 transition-colors"><p className="text-[var(--color-gold)] text-[13px] italic mb-2" style={{ fontFamily: "var(--font-heading)" }}>{item.year}</p><h3 className="text-[16px] font-bold text-white mb-2">{item.title}</h3><p className="text-[13px] text-white/40 leading-relaxed">{item.desc}</p></div></div><div /></>
                       ) : (
-                        <>
-                          <div />
-                          <div className="text-left">
-                            <div className="bg-[#141414] border border-white/[0.06] rounded-xl p-7 hover:border-[var(--color-gold)]/20 transition-colors w-full">
-                              <p className="text-[var(--color-gold)] text-[13px] italic mb-2" style={{ fontFamily: "var(--font-heading)" }}>{item.year}</p>
-                              <h3 className="text-[16px] font-bold text-white mb-2 tracking-tight">{item.title}</h3>
-                              <p className="text-[13px] text-white/40 leading-relaxed">{item.desc}</p>
-                            </div>
-                          </div>
-                        </>
+                        <><div /><div className="text-left"><div className="bg-[#141414] border border-white/[0.06] rounded-xl p-7 hover:border-[var(--color-gold)]/20 transition-colors"><p className="text-[var(--color-gold)] text-[13px] italic mb-2" style={{ fontFamily: "var(--font-heading)" }}>{item.year}</p><h3 className="text-[16px] font-bold text-white mb-2">{item.title}</h3><p className="text-[13px] text-white/40 leading-relaxed">{item.desc}</p></div></div></>
                       )}
                     </div>
-
                     <div className="sm:hidden">
                       <div className="bg-[#1a1a1a] border border-white/[0.08] rounded-xl p-5 pl-7 relative overflow-hidden text-left">
                         <div className="absolute left-0 top-0 bottom-0 w-[4px] rounded-l-xl bg-[var(--color-gold)]" />
                         <p className="text-[var(--color-gold)] text-[12px] font-semibold tracking-[0.08em] mb-2">{item.year}</p>
-                        <h3 className="text-[15px] font-bold text-white mb-1.5 tracking-tight">{item.title}</h3>
+                        <h3 className="text-[15px] font-bold text-white mb-1.5">{item.title}</h3>
                         <p className="text-[13px] text-white/40 leading-relaxed">{item.desc}</p>
                       </div>
                     </div>
@@ -236,14 +201,14 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ══════════ SERVICES ══════════ */}
+        {/* ══════════ SERVICES (grid 3x2) ══════════ */}
         <section className="section-dark">
           <div className="container">
             <div className="fade-up">
               <p className="label-en mb-4">Services</p>
               <h2 className="heading-section text-white">提供サービス</h2>
             </div>
-            <div className="flex-row-equal flex-wrap fade-up">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 fade-up">
               {[
                 { title: "対面パーソナルトレーニング", desc: "ダイエット/筋肥大/姿勢改善/機能改善。初心者〜大会出場まで対応。", img: "/images/svc-training.jpg" },
                 { title: "フィジーク大会サポート", desc: "減量設計・分割設計・ポージング指導・大会スケジュール逆算プラン。", img: "/images/svc-physique.jpg" },
@@ -252,7 +217,7 @@ export default function Home() {
                 { title: "オーダースーツ", desc: "トレーナー視点の採寸・生地選定・スタイリング提案。身体が映える一着を。", img: "/images/suit.jpg" },
                 { title: "ウェルネスイベント企画", desc: "皇居ランなど運動イベント企画・ウェルネス交流会運営。", img: "/images/svc-wellness.jpg" },
               ].map((s, i) => (
-                <div key={i} className="relative h-[220px] rounded-xl overflow-hidden group" style={{ flex: "1 1 calc(33.333% - 16px)", minWidth: "280px" }}>
+                <div key={i} className="relative h-[220px] rounded-xl overflow-hidden group">
                   <Image src={s.img} alt={s.title} fill className="object-cover opacity-30 group-hover:opacity-40 group-hover:scale-105 transition-all duration-500" sizes="(max-width:768px) 100vw, 33vw" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
                   <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 z-10 text-left">
@@ -265,7 +230,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ══════════ GALLERY ══════════ */}
+        {/* ══════════ GALLERY (grid 4 cols) ══════════ */}
         <section id="gallery" className="section-dark">
           <div className="container">
             <div className="mb-12 fade-up">
@@ -273,7 +238,7 @@ export default function Home() {
               <h2 className="heading-section text-white !mb-2">活動の瞬間に宿る、</h2>
               <h2 className="heading-section"><span className="text-gold italic">確信と情熱</span></h2>
             </div>
-            <div className="gallery-grid fade-up">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 fade-up">
               {[
                 { src: "/images/gal-1.jpg", alt: "トレーニング風景" },
                 { src: "/images/gal-2.jpg", alt: "ダンベルカール" },
@@ -300,13 +265,11 @@ export default function Home() {
               <h2 className="heading-section text-white !mb-4">お問い合わせ</h2>
               <p className="body-text-dark">トレーニング、大会サポート、オーダースーツなど、<br className="hidden sm:inline" />お気軽にご相談ください。</p>
             </div>
-
             <div className="flex flex-wrap justify-center gap-3 mb-10 fade-up">
               {["東京（板橋・恵比寿）", "都内レンタルジム", "愛媛県", "オンライン対応"].map((a) => (
                 <span key={a} className="text-[12px] text-white/30 border border-white/10 rounded-full px-4 py-2">{a}</span>
               ))}
             </div>
-
             <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 fade-up">
               <a href="#" className="btn-gold">LINE で相談する</a>
               <a href="#" className="btn-outline">Instagram</a>
