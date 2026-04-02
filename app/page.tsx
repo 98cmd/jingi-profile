@@ -10,19 +10,13 @@ export default function Home() {
       <main>
         {/* ══════════ HERO ══════════ */}
         <section className="relative min-h-[100svh] flex items-end overflow-hidden">
-          <Image
-            src="/images/hero.jpg"
-            alt="上田 陣義"
-            fill
-            className="object-cover object-center sm:object-top"
-            sizes="100vw"
-            priority
-          />
+          <Image src="/images/hero.jpg" alt="上田 陣義" fill className="object-cover object-center sm:object-top" sizes="100vw" priority />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/10" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent hidden sm:block" />
 
-          <div className="relative z-10 w-full pb-12 sm:pb-16 pt-32 px-4 sm:px-6">
-            <div className="container">
+          {/* ヒーローにも左右padding確保（containerで囲む） */}
+          <div className="relative z-10 w-full pb-12 sm:pb-16 pt-32">
+            <div className="container" style={{ textAlign: "left" }}>
               <div className="mb-6">
                 <p className="label-en mb-3">JM Group Representative</p>
                 <h1 className="text-white text-[40px] sm:text-[56px] md:text-[72px] font-bold leading-[1.1] mb-3" style={{ fontFamily: "var(--font-heading)" }}>
@@ -47,18 +41,18 @@ export default function Home() {
               </div>
 
               <div className="flex flex-wrap items-end gap-8 sm:gap-12 mb-10">
-                <div>
-                  <div className="stat-num text-[var(--color-gold)]">No.1</div>
-                  <p className="text-white/30 text-[10px] tracking-[0.15em] uppercase mt-1">全店トップ</p>
-                </div>
-                <div>
-                  <div className="stat-num text-white">8<span className="text-[0.4em] text-white/30 ml-1">年</span></div>
-                  <p className="text-white/30 text-[10px] tracking-[0.15em] uppercase mt-1">業界キャリア</p>
-                </div>
-                <div>
-                  <div className="stat-num text-white">4<span className="text-[0.4em] text-white/30 ml-1">事業</span></div>
-                  <p className="text-white/30 text-[10px] tracking-[0.15em] uppercase mt-1">展開中</p>
-                </div>
+                {[
+                  { val: "No.1", unit: "", label: "全店トップ" },
+                  { val: "8", unit: "年", label: "業界キャリア" },
+                  { val: "4", unit: "事業", label: "展開中" },
+                ].map((s, i) => (
+                  <div key={i}>
+                    <div className={`stat-num ${i === 0 ? "text-[var(--color-gold)]" : "text-white"}`}>
+                      {s.val}{s.unit && <span className="text-[0.4em] text-white/30 ml-1">{s.unit}</span>}
+                    </div>
+                    <p className="text-white/30 text-[10px] tracking-[0.15em] uppercase mt-1">{s.label}</p>
+                  </div>
+                ))}
               </div>
 
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -75,7 +69,7 @@ export default function Home() {
         </section>
 
         {/* ══════════ ABOUT / STORY ══════════ */}
-        <section id="about" className="section-light px-4 sm:px-6">
+        <section id="about" className="section-light">
           <div className="container">
             <div className="fade-up mb-12">
               <p className="label-en mb-4">Our Story</p>
@@ -85,8 +79,8 @@ export default function Home() {
               </h2>
             </div>
 
-            <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 mb-20">
-              <div className="lg:w-[55%] fade-up">
+            <div className="flex-row-equal mb-20" style={{ alignItems: "flex-start" }}>
+              <div className="fade-up" style={{ textAlign: "left" }}>
                 <p className="body-text mb-8">
                   愛媛県出身。地方から単身上京し、フィットネス業界に飛び込む。大手フィットネスクラブでキャリアをスタートし、パーソナルジムへ転身後は物販売上全社No.1、全店No.1セールス、最年少リーダーと次々に結果を出し続けた。
                 </p>
@@ -94,15 +88,15 @@ export default function Home() {
                   2026年、満を持して独立。パーソナルジム、オーダースーツ、ウェルネスコミュニティ、そして同じ愛媛出身の挑戦者を支援するコミュニティと、4つの事業を同時展開。運動・健康・外見・マインド・ビジネスを通して「人生を変えるきっかけをつくる存在」を目指す。
                 </p>
               </div>
-              <div className="lg:w-[45%] fade-up">
+              <div className="fade-up">
                 <div className="relative aspect-[4/5] rounded-lg overflow-hidden shadow-2xl">
-                  <Image src="/images/competition.jpg" alt="上田陣義" fill className="object-cover object-top" sizes="(max-width:1024px) 100vw, 45vw" />
+                  <Image src="/images/competition.jpg" alt="上田陣義" fill className="object-cover object-top" sizes="(max-width:1024px) 100vw, 50vw" />
                 </div>
               </div>
             </div>
 
-            {/* 3 Story blocks - 成り上がりストーリー */}
-            <div className="space-y-16">
+            {/* 3 Story blocks */}
+            <div className="space-y-16" style={{ textAlign: "left" }}>
               {[
                 { num: "1", title: "地方から上京、ゼロからのスタート", body: "愛媛県から単身上京。何のコネクションもない東京で、大手フィットネスクラブに入社。広島・愛媛で経験を積みながら、トレーナーとしての基礎を叩き込んだ。" },
                 { num: "2", title: "圧倒的な結果で、全てを証明する", body: "パーソナルジムへ転身後、物販売上全社No.1を達成。さらに全店No.1セールス、社内最年少リーダーへ。周囲の期待を超える実績で、自分の価値を証明し続けた。" },
@@ -121,20 +115,20 @@ export default function Home() {
         </section>
 
         {/* ══════════ BUSINESS (4枠) ══════════ */}
-        <section id="business" className="section-dark px-4 sm:px-6">
+        <section id="business" className="section-dark">
           <div className="container">
-            <div className="text-center mb-16 sm:mb-20 fade-up">
+            <div className="fade-up">
               <p className="label-en mb-4">Pillars of Excellence</p>
               <h2 className="heading-section text-white">事業領域</h2>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-5">
+            <div className="flex-row-equal flex-wrap">
               {/* 上2つ: サービスページへリンクあり */}
               {[
-                { title: "APEX PERSONAL GYM", sub: "パーソナルジム", desc: "完全個室・全国No.1トレーナーが導くオーダーメイドボディメイク。ダイエット、筋肥大、姿勢改善、大会サポートまで。", img: "/images/gym.jpg", tags: ["完全個室", "恵比寿", "手ぶらOK"], href: "#", hasLink: true },
-                { title: "ORDER SUIT", sub: "オーダースーツ", desc: "トレーナー視点の採寸×生地選定×スタイリング提案。鍛え上げた身体が最も美しく見えるスーツを設計。", img: "/images/suit.jpg", tags: ["生地選定", "スタイリング", "採寸"], href: "#", hasLink: true },
+                { title: "APEX PERSONAL GYM", sub: "パーソナルジム", desc: "完全個室・全国No.1トレーナーが導くオーダーメイドボディメイク。ダイエット、筋肥大、姿勢改善、大会サポートまで。", img: "/images/gym.jpg", tags: ["完全個室", "恵比寿", "手ぶらOK"], href: "#" },
+                { title: "ORDER SUIT", sub: "オーダースーツ", desc: "トレーナー視点の採寸×生地選定×スタイリング提案。鍛え上げた身体が最も美しく見えるスーツを設計。", img: "/images/suit.jpg", tags: ["生地選定", "スタイリング", "採寸"], href: "#" },
               ].map((b, i) => (
-                <a key={i} href={b.href} className="biz-card group relative h-[320px] sm:h-[380px] p-8 sm:p-10 flex flex-col justify-end fade-up">
+                <a key={i} href={b.href} className="biz-card group relative h-[320px] sm:h-[380px] p-8 sm:p-10 flex flex-col justify-end fade-up" style={{ textAlign: "left", minWidth: 0 }}>
                   <Image src={b.img} alt={b.title} fill className="object-cover opacity-25 group-hover:opacity-35 transition-opacity duration-500 rounded-xl" sizes="(max-width:768px) 100vw, 50vw" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent rounded-xl" />
                   <div className="relative z-10">
@@ -151,13 +145,15 @@ export default function Home() {
                   </div>
                 </a>
               ))}
+            </div>
 
-              {/* 下2つ: LPなし（リンクなし） */}
+            <div className="flex-row-equal flex-wrap mt-6">
+              {/* 下2つ: LPなし */}
               {[
                 { title: "WELLNESS COMMUNITY", sub: "ウェルネスコミュニティ", desc: "皇居ランなどの運動イベント企画・ウェルネス交流会運営。健康を軸にした繋がりの場を創る。", img: "/images/community.jpg", tags: ["皇居ラン", "交流イベント", "運動習慣"] },
                 { title: "CHALLENGER'S HUB", sub: "挑戦者コミュニティ", desc: "愛媛をはじめ地方から上京する挑戦者を支援。自身の経験を活かし、住居・仕事・人脈づくりをサポート。", img: "/images/hero.jpg", tags: ["上京支援", "愛媛出身", "人脈づくり"] },
               ].map((b, i) => (
-                <div key={i} className="biz-card relative h-[320px] sm:h-[380px] p-8 sm:p-10 flex flex-col justify-end fade-up">
+                <div key={i} className="biz-card relative h-[320px] sm:h-[380px] p-8 sm:p-10 flex flex-col justify-end fade-up" style={{ textAlign: "left", minWidth: 0 }}>
                   <Image src={b.img} alt={b.title} fill className="object-cover opacity-20 rounded-xl" sizes="(max-width:768px) 100vw, 50vw" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent rounded-xl" />
                   <div className="relative z-10">
@@ -176,15 +172,14 @@ export default function Home() {
         </section>
 
         {/* ══════════ CAREER TIMELINE ══════════ */}
-        <section id="career" className="section-dark px-4 sm:px-6">
+        <section id="career" className="section-dark">
           <div className="container">
-            <div className="text-center fade-up">
+            <div className="fade-up">
               <p className="label-en mb-4">Track Record</p>
               <h2 className="heading-section text-white">経歴・実績</h2>
             </div>
 
             <div className="max-w-[800px] mx-auto relative">
-              {/* Center line - desktop only */}
               <div className="absolute hidden sm:block sm:left-1/2 top-0 bottom-0 w-[2px] sm:-translate-x-[1px] bg-gradient-to-b from-[var(--color-gold)] via-[#333] to-transparent" />
 
               {[
@@ -198,13 +193,12 @@ export default function Home() {
                 const isLeft = i % 2 === 0;
                 return (
                   <div key={i} className="relative mb-10 last:mb-0 fade-up">
-                    {/* Dot - desktop only */}
                     <div className="absolute hidden sm:block sm:left-1/2 sm:-translate-x-1/2 top-5 w-[12px] h-[12px] rounded-full bg-[var(--color-gold)] border-[2px] border-[#0a0a0a] shadow-[0_0_0_2px_var(--color-gold)] z-10" />
 
                     <div className="hidden sm:grid sm:grid-cols-2 sm:gap-16">
                       {isLeft ? (
                         <>
-                          <div>
+                          <div className="text-left">
                             <div className="bg-[#141414] border border-white/[0.06] rounded-xl p-7 hover:border-[var(--color-gold)]/20 transition-colors w-full">
                               <p className="text-[var(--color-gold)] text-[13px] italic mb-2" style={{ fontFamily: "var(--font-heading)" }}>{item.year}</p>
                               <h3 className="text-[16px] font-bold text-white mb-2 tracking-tight">{item.title}</h3>
@@ -216,7 +210,7 @@ export default function Home() {
                       ) : (
                         <>
                           <div />
-                          <div>
+                          <div className="text-left">
                             <div className="bg-[#141414] border border-white/[0.06] rounded-xl p-7 hover:border-[var(--color-gold)]/20 transition-colors w-full">
                               <p className="text-[var(--color-gold)] text-[13px] italic mb-2" style={{ fontFamily: "var(--font-heading)" }}>{item.year}</p>
                               <h3 className="text-[16px] font-bold text-white mb-2 tracking-tight">{item.title}</h3>
@@ -228,7 +222,7 @@ export default function Home() {
                     </div>
 
                     <div className="sm:hidden">
-                      <div className="bg-[#1a1a1a] border border-white/[0.08] rounded-xl p-5 pl-7 relative overflow-hidden ml-2">
+                      <div className="bg-[#1a1a1a] border border-white/[0.08] rounded-xl p-5 pl-7 relative overflow-hidden text-left">
                         <div className="absolute left-0 top-0 bottom-0 w-[4px] rounded-l-xl bg-[var(--color-gold)]" />
                         <p className="text-[var(--color-gold)] text-[12px] font-semibold tracking-[0.08em] mb-2">{item.year}</p>
                         <h3 className="text-[15px] font-bold text-white mb-1.5 tracking-tight">{item.title}</h3>
@@ -243,13 +237,13 @@ export default function Home() {
         </section>
 
         {/* ══════════ SERVICES ══════════ */}
-        <section className="section-dark px-4 sm:px-6">
+        <section className="section-dark">
           <div className="container">
-            <div className="text-center fade-up">
+            <div className="fade-up">
               <p className="label-en mb-4">Services</p>
               <h2 className="heading-section text-white">提供サービス</h2>
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 fade-up">
+            <div className="flex-row-equal flex-wrap fade-up">
               {[
                 { title: "対面パーソナルトレーニング", desc: "ダイエット/筋肥大/姿勢改善/機能改善。初心者〜大会出場まで対応。", img: "/images/svc-training.jpg" },
                 { title: "フィジーク大会サポート", desc: "減量設計・分割設計・ポージング指導・大会スケジュール逆算プラン。", img: "/images/svc-physique.jpg" },
@@ -258,10 +252,10 @@ export default function Home() {
                 { title: "オーダースーツ", desc: "トレーナー視点の採寸・生地選定・スタイリング提案。身体が映える一着を。", img: "/images/suit.jpg" },
                 { title: "ウェルネスイベント企画", desc: "皇居ランなど運動イベント企画・ウェルネス交流会運営。", img: "/images/svc-wellness.jpg" },
               ].map((s, i) => (
-                <div key={i} className="relative h-[220px] rounded-xl overflow-hidden group">
+                <div key={i} className="relative h-[220px] rounded-xl overflow-hidden group" style={{ flex: "1 1 calc(33.333% - 16px)", minWidth: "280px" }}>
                   <Image src={s.img} alt={s.title} fill className="object-cover opacity-30 group-hover:opacity-40 group-hover:scale-105 transition-all duration-500" sizes="(max-width:768px) 100vw, 33vw" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
-                  <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 z-10">
+                  <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 z-10 text-left">
                     <h3 className="text-white text-[15px] font-semibold mb-1.5">{s.title}</h3>
                     <p className="text-white/50 text-[12px] leading-relaxed">{s.desc}</p>
                   </div>
@@ -272,7 +266,7 @@ export default function Home() {
         </section>
 
         {/* ══════════ GALLERY ══════════ */}
-        <section id="gallery" className="section-dark px-4 sm:px-6">
+        <section id="gallery" className="section-dark">
           <div className="container">
             <div className="mb-12 fade-up">
               <p className="label-en mb-4">Visual Journal</p>
@@ -299,7 +293,7 @@ export default function Home() {
         </section>
 
         {/* ══════════ CONTACT ══════════ */}
-        <section id="contact" className="section-dark contact px-4 sm:px-6 border-t border-white/5">
+        <section id="contact" className="section-dark contact border-t border-white/5">
           <div className="container">
             <div className="fade-up mb-12">
               <p className="label-en mb-4">Contact</p>
@@ -321,8 +315,8 @@ export default function Home() {
         </section>
 
         {/* ══════════ FOOTER ══════════ */}
-        <footer className="section-dark py-12 px-4 sm:px-6 border-t border-white/5">
-          <div className="container flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+        <footer className="section-dark border-t border-white/5" style={{ padding: "48px 0" }}>
+          <div className="container flex flex-col sm:flex-row items-center justify-between gap-6">
             <p className="text-white text-[16px] tracking-wide" style={{ fontFamily: "var(--font-heading)" }}>
               <span className="text-[var(--color-gold)]">J</span>ingi Ueda
             </p>

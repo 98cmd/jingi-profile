@@ -26,12 +26,44 @@ body {
   overflow-x: hidden;
 }
 
-.section-dark { background: var(--color-black); color: var(--color-white); padding-top: 80px; padding-bottom: 80px; }
-.section-light { background: var(--color-cream); color: var(--color-text); padding-top: 80px; padding-bottom: 80px; }
+/* ================================================================
+   レイアウト必須ルール
+   ================================================================ */
 
-.container { max-width: 1200px; margin: 0 auto; }
+/* 全セクションに padding: 80px 0 */
+.section-dark {
+  background: var(--color-black);
+  color: var(--color-white);
+  padding: 80px 0;
+  text-align: center;
+}
+.section-light {
+  background: var(--color-cream);
+  color: var(--color-text);
+  padding: 80px 0;
+  text-align: center;
+}
 
-/* ---- Typography ---- */
+/* .container: max-width 1200px, 左右 padding 40px */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* 横並び要素: flex + gap 24px + 子要素 flex:1 で高さ揃え */
+.flex-row-equal {
+  display: flex;
+  gap: 24px;
+}
+.flex-row-equal > * {
+  flex: 1;
+}
+
+/* ================================================================
+   Typography
+   ================================================================ */
+
 .heading-display {
   font-family: var(--font-heading);
   font-size: clamp(32px, 5vw, 56px);
@@ -92,16 +124,6 @@ body {
   transform: translateY(-2px);
 }
 
-/* ---- Timeline ---- */
-.timeline-dot {
-  width: 14px; height: 14px;
-  border-radius: 50%;
-  background: var(--color-gold);
-  border: 3px solid var(--color-cream);
-  box-shadow: 0 0 0 2px var(--color-gold);
-  flex-shrink: 0;
-}
-
 /* ---- Buttons ---- */
 .btn-gold {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -125,9 +147,13 @@ body {
 
 /* ---- Gallery ---- */
 .gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.gallery-grid > * {
+  flex: 1 1 calc(25% - 18px);
+  min-width: 0;
 }
 .gallery-item {
   aspect-ratio: 4/3; overflow: hidden; border-radius: 8px; position: relative; background: #1a1a1a;
@@ -149,7 +175,7 @@ body {
 .contact { text-align: center; }
 
 /* ---- Misc ---- */
-.gold-line { width: 40px; height: 2px; background: var(--color-gold); }
+.gold-line { width: 40px; height: 2px; background: var(--color-gold); margin-left: auto; margin-right: auto; }
 
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--color-black); }
@@ -159,11 +185,17 @@ a:focus-visible, button:focus-visible {
   outline: 2px solid var(--color-gold); outline-offset: 2px;
 }
 
+/* ================================================================
+   Mobile
+   ================================================================ */
 @media (max-width: 767px) {
-  .btn-gold, .btn-outline { width: 100%; padding: 14px 24px; }
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 4px; }
+  .container { padding: 0 20px; }
 
-  .section-dark, .section-light { padding-top: 56px; padding-bottom: 56px; }
+  .btn-gold, .btn-outline { width: 100%; padding: 14px 24px; }
+
+  .gallery-grid > * { flex: 1 1 calc(50% - 12px); }
+
+  .section-dark, .section-light { padding: 56px 0; }
 
   .heading-display { font-size: clamp(26px, 7vw, 36px); margin-bottom: 24px; }
   .heading-section { font-size: clamp(22px, 6vw, 32px); margin-bottom: 24px; }
@@ -172,9 +204,7 @@ a:focus-visible, button:focus-visible {
 
   .profile-card { padding: 20px; }
 
-  /* Stats bar mobile */
-  .stats-bar { flex-direction: column; gap: 12px; padding: 16px 0; }
-  .stats-bar .stat-item { display: flex; align-items: baseline; gap: 8px; }
+  .flex-row-equal { flex-direction: column; gap: 16px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
