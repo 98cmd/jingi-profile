@@ -77,7 +77,7 @@ export default function Home() {
         {/* ══════════ ABOUT / STORY ══════════ */}
         <section id="about" className="section-light px-4 sm:px-6">
           <div className="container">
-            <div className="fade-up mb-16">
+            <div className="fade-up mb-12">
               <p className="label-en mb-4">Our Story</p>
               <h2 className="heading-display">
                 愛媛から東京へ。<br />
@@ -184,7 +184,8 @@ export default function Home() {
             </div>
 
             <div className="max-w-[800px] mx-auto relative">
-              <div className="absolute left-5 sm:left-1/2 top-0 bottom-0 w-[2px] sm:-translate-x-[1px] bg-gradient-to-b from-[var(--color-gold)] via-[#333] to-transparent" />
+              {/* Center line - desktop only */}
+              <div className="absolute hidden sm:block sm:left-1/2 top-0 bottom-0 w-[2px] sm:-translate-x-[1px] bg-gradient-to-b from-[var(--color-gold)] via-[#333] to-transparent" />
 
               {[
                 { year: "2026年", title: "JM GROUP として独立", desc: "パーソナルジム、オーダースーツ、ウェルネスコミュニティ、挑戦者コミュニティの4事業を同時展開。" },
@@ -196,8 +197,9 @@ export default function Home() {
               ].map((item, i) => {
                 const isLeft = i % 2 === 0;
                 return (
-                  <div key={i} className="relative mb-10 last:mb-0 fade-up pl-12 sm:pl-0">
-                    <div className="absolute left-[14px] sm:left-1/2 sm:-translate-x-1/2 top-5 w-[12px] h-[12px] rounded-full bg-[var(--color-gold)] border-[2px] border-[#0a0a0a] shadow-[0_0_0_2px_var(--color-gold)] z-10" />
+                  <div key={i} className="relative mb-10 last:mb-0 fade-up">
+                    {/* Dot - desktop only */}
+                    <div className="absolute hidden sm:block sm:left-1/2 sm:-translate-x-1/2 top-5 w-[12px] h-[12px] rounded-full bg-[var(--color-gold)] border-[2px] border-[#0a0a0a] shadow-[0_0_0_2px_var(--color-gold)] z-10" />
 
                     <div className="hidden sm:grid sm:grid-cols-2 sm:gap-16">
                       {isLeft ? (
@@ -226,9 +228,10 @@ export default function Home() {
                     </div>
 
                     <div className="sm:hidden">
-                      <div className="bg-[#141414] border border-white/[0.06] rounded-xl p-6 hover:border-[var(--color-gold)]/20 transition-colors">
-                        <p className="text-[var(--color-gold)] text-[13px] italic mb-2" style={{ fontFamily: "var(--font-heading)" }}>{item.year}</p>
-                        <h3 className="text-[16px] font-bold text-white mb-2 tracking-tight">{item.title}</h3>
+                      <div className="bg-[#1a1a1a] border border-white/[0.08] rounded-xl p-5 pl-7 relative overflow-hidden ml-2">
+                        <div className="absolute left-0 top-0 bottom-0 w-[4px] rounded-l-xl bg-[var(--color-gold)]" />
+                        <p className="text-[var(--color-gold)] text-[12px] font-semibold tracking-[0.08em] mb-2">{item.year}</p>
+                        <h3 className="text-[15px] font-bold text-white mb-1.5 tracking-tight">{item.title}</h3>
                         <p className="text-[13px] text-white/40 leading-relaxed">{item.desc}</p>
                       </div>
                     </div>
