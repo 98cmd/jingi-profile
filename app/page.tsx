@@ -16,13 +16,13 @@ export default function Home() {
             src="/images/hero.jpg"
             alt="上田 陣義"
             fill
-            className="object-cover object-top"
+            className="object-cover object-center sm:object-top"
             sizes="100vw"
             priority
           />
           {/* Gradient overlays */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/20" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent hidden sm:block" />
 
           {/* Content overlay at bottom */}
           <div className="relative z-10 w-full pb-12 sm:pb-16 pt-32 px-4 sm:px-6">
@@ -228,9 +228,9 @@ export default function Home() {
               ].map((item, i) => {
                 const isLeft = i % 2 === 0;
                 return (
-                  <div key={i} className="relative mb-12 last:mb-0 fade-up pl-14 sm:pl-0">
-                    {/* Dot - exactly on center line */}
-                    <div className="absolute left-[13px] sm:left-1/2 sm:-translate-x-1/2 top-6 w-[14px] h-[14px] rounded-full bg-[var(--color-gold)] border-[3px] border-[#0a0a0a] shadow-[0_0_0_2px_var(--color-gold)] z-10" />
+                  <div key={i} className="relative mb-10 last:mb-0 fade-up pl-12 sm:pl-0">
+                    {/* Dot - on center line */}
+                    <div className="absolute left-[14px] sm:left-1/2 sm:-translate-x-1/2 top-5 w-[12px] h-[12px] rounded-full bg-[var(--color-gold)] border-[2px] border-[#0a0a0a] shadow-[0_0_0_2px_var(--color-gold)] z-10" />
 
                     {/* Card container - uses grid to place card on correct side */}
                     <div className="hidden sm:grid sm:grid-cols-2 sm:gap-16">
