@@ -74,19 +74,30 @@ export default function Home() {
               </h2>
             </div>
 
-            {/* flex-row-equal: テキスト+写真の2カラム */}
-            <div className="flex-row-equal mb-20" style={{ alignItems: "flex-start" }}>
-              <div className="fade-up" style={{ textAlign: "left" }}>
-                <p className="body-text mb-8">
-                  愛媛県出身。地方から単身上京し、フィットネス業界に飛び込む。大手フィットネスクラブでキャリアをスタートし、パーソナルジムへ転身後は物販売上全社No.1、全店No.1セールス、最年少リーダーと次々に結果を出し続けた。
-                </p>
-                <p className="body-text">
-                  2026年、満を持して独立。パーソナルジム、オーダースーツ、ウェルネスコミュニティ、そして同じ愛媛出身の挑戦者を支援するコミュニティと、4つの事業を同時展開。運動・健康・外見・マインド・ビジネスを通して「人生を変えるきっかけをつくる存在」を目指す。
-                </p>
+            {/* モバイル: 写真を先に大きく表示 / PC: 横並び */}
+            <div className="mb-20">
+              {/* モバイル: 写真を画面幅いっぱいで大きくインパクト */}
+              <div className="sm:hidden fade-up mb-10 -mx-[40px]">
+                <div className="relative aspect-[3/4] overflow-hidden">
+                  <Image src="/images/competition.jpg" alt="上田陣義" fill className="object-cover object-top" sizes="100vw" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-cream)]/80 via-transparent to-transparent" />
+                </div>
               </div>
-              <div className="fade-up">
-                <div className="relative aspect-[4/5] rounded-lg overflow-hidden shadow-2xl" style={{ minHeight: "300px" }}>
-                  <Image src="/images/competition.jpg" alt="上田陣義" fill className="object-cover object-top" sizes="(max-width:767px) 100vw, 50vw" />
+
+              <div className="flex-row-equal" style={{ alignItems: "flex-start" }}>
+                <div className="fade-up" style={{ textAlign: "left" }}>
+                  <p className="body-text mb-8">
+                    愛媛県出身。地方から単身上京し、フィットネス業界に飛び込む。大手フィットネスクラブでキャリアをスタートし、パーソナルジムへ転身後は物販売上全社No.1、全店No.1セールス、最年少リーダーと次々に結果を出し続けた。
+                  </p>
+                  <p className="body-text">
+                    2026年、満を持して独立。パーソナルジム、オーダースーツ、ウェルネスコミュニティ、そして同じ愛媛出身の挑戦者を支援するコミュニティと、4つの事業を同時展開。運動・健康・外見・マインド・ビジネスを通して「人生を変えるきっかけをつくる存在」を目指す。
+                  </p>
+                </div>
+                {/* PC: 右側に写真 */}
+                <div className="fade-up hidden sm:block">
+                  <div className="relative aspect-[4/5] rounded-lg overflow-hidden shadow-2xl" style={{ minHeight: "400px" }}>
+                    <Image src="/images/competition.jpg" alt="上田陣義" fill className="object-cover object-top" sizes="50vw" />
+                  </div>
                 </div>
               </div>
             </div>
