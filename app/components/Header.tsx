@@ -24,7 +24,7 @@ export default function Header() {
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "bg-black/90 backdrop-blur-md shadow-lg" : "bg-transparent"}`}>
       {/* Gold top line */}
       <div className="h-[2px] bg-gradient-to-r from-transparent via-[var(--color-gold)] to-transparent opacity-60" />
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 flex items-center justify-between h-14 sm:h-16">
+      <div className="max-w-[1200px] mx-auto px-5 sm:px-10 flex items-center justify-between h-14 sm:h-16">
         <a href="#" className="text-white text-[14px] font-medium tracking-wide" style={{ fontFamily: "var(--font-heading)" }}>
           <span className="text-[var(--color-gold)]">J</span>ingi
         </a>
