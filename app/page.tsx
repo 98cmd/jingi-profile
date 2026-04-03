@@ -134,7 +134,7 @@ export default function Home() {
                 { title: "APEX PERSONAL GYM", sub: "パーソナルジム", desc: "完全個室・全国No.1トレーナーが導くオーダーメイドボディメイク。ダイエット、筋肥大、姿勢改善、大会サポートまで。", img: "/images/gym.jpg", tags: ["完全個室", "恵比寿", "手ぶらOK"], href: "#", link: true },
                 { title: "ORDER SUIT", sub: "オーダースーツ", desc: "トレーナー視点の採寸×生地選定×スタイリング提案。鍛え上げた身体が最も美しく見えるスーツを設計。", img: "/images/suit.jpg", tags: ["生地選定", "スタイリング", "採寸"], href: "#", link: true },
                 { title: "WELLNESS COMMUNITY", sub: "ウェルネスコミュニティ", desc: "皇居ランなどの運動イベント企画・ウェルネス交流会運営。健康を軸にした繋がりの場を創る。", img: "/images/community.jpg", tags: ["皇居ラン", "交流イベント", "運動習慣"], href: "#", link: false },
-                { title: "CHALLENGER'S HUB", sub: "挑戦者コミュニティ", desc: "愛媛をはじめ地方から上京する挑戦者を支援。自身の経験を活かし、住居・仕事・人脈づくりをサポート。", img: "/images/hero.jpg", tags: ["上京支援", "愛媛出身", "人脈づくり"], href: "#", link: false },
+                { title: "CHALLENGER'S HUB", sub: "挑戦者コミュニティ", desc: "愛媛をはじめ地方から上京する挑戦者を支援。自身の経験を活かし、住居・仕事・人脈づくりをサポート。", img: "/images/challenger.jpg", tags: ["上京支援", "愛媛出身", "人脈づくり"], href: "#", link: false },
               ].map((b, i) => {
                 const inner = (
                   <>
