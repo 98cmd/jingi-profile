@@ -39,7 +39,7 @@ export default function Home() {
 
               {/* 肩書き */}
               <p className="text-[var(--color-gold)] text-[13px] sm:text-[14px] font-medium tracking-wide mb-8">
-                パーソナルトレーナー / フィジーク競技者 / スーツテーラー
+                パーソナルトレーナー / オーダースーツテーラー / 実業家
               </p>
 
               {/* リード文 */}

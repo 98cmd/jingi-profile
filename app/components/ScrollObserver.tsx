@@ -4,6 +4,9 @@ import { useEffect } from "react";
 
 export default function ScrollObserver() {
   useEffect(() => {
+    // JS有効時のみアニメーションを有効化（JS無効時はコンテンツ常時表示）
+    document.documentElement.classList.add("js-ready");
+
     const obs = new IntersectionObserver(
       (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add("visible"); }),
       { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
